@@ -127,12 +127,12 @@ def main (chkpt):
     
             ############## Train ################
             if gameTick%6==0:
-                states, actions, rewards, next_states, dones = buffer.sample(batch_size)
+                states, actions, rewards, next_states, dones = buffer.sample(batch_size)  
                 Q_values = player.get_action_values(states, actions)
                 
-                Q_hat_Values, next_actions = player_hat.get_max_action_value(next_states)   
+                Q_hat_Values, next_actions = player_hat.get_max_action_value(next_states)    # DQN
                 
-                loss = player.DQN.loss(Q_values, rewards, Q_hat_Values, dones)
+                loss = player.DQN.loss(Q_values, rewards, Q_hat_Values, dones)   # loss = (r + q_hat(s',a') - q(s,a))^2
 
                 loss.backward()
                 optim.step()

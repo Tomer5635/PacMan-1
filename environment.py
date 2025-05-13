@@ -419,8 +419,13 @@ class Game:
         col = col.item() + n
         pad = (n, n, n, n)
 
+        state_cnn = state_cnn.unsqueeze(0) 
+
         # Pad the board
         padded = F.pad(state_cnn, pad, mode='circular')
+        
+        padded = padded.squeeze(0)
+        
         sub_state = padded[:, row-n:row+n+1, col-n:col+n+1]
 
         return sub_state

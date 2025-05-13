@@ -59,7 +59,7 @@ class DQN_Agent:
         # Select the Q-value corresponding to each action
         selected_q_values = q_values.gather(1, actions.unsqueeze(1)).squeeze(1)  # [B]
 
-        return selected_q_values.unsqueeze(1)
+        return selected_q_values.unsqueeze(1) #[B, 1]
 
     
     def loadModel (self, file):
